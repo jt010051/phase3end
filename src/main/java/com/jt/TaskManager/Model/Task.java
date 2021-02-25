@@ -18,7 +18,10 @@ public class Task {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
 private String task;
+@Column(name ="startDate")
 private String startDate;
+@Column(name ="endDate")
+
 private String endDate;
 private String description;
 private String email;

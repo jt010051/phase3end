@@ -30,12 +30,12 @@ import com.jt.TaskManager.Model.Service.UserSer;
 public class Contr {
 	@Autowired
 	UserSer service;
-	@GetMapping("login")
-
-	public String getLoginView() {
-		
-		return  "login";
-	}
+//	@GetMapping("login")
+//
+//	public String getLoginView() {
+//		
+//		return  "login";
+//	}
 	@GetMapping("/getall")
 
 	public String getDisplay() {
@@ -51,18 +51,20 @@ public class Contr {
 	 @Autowired
 	    private TaskRepo repo;
 	 @RequestMapping(value = "/display", method = RequestMethod.GET)
-	    public String displayTasks(ModelMap model) {
+	    public String displayTasks(ModelMap model,Principal principal) {
 	        String name = (String) model.get("tasks");
-	        Iterable<Task> tasks = service.listAllUser();
+	        Iterable<Task> tasks = service.listAllTasks();
 
-	        model.put("tasks", service.listAllUser());
+	        model.put("tasks", tasks);
+			model.put("user", service.GetUserByName(principal.getName()));
+
 	        return "display";
 	    
 	    }
 	 @PostMapping("/update/{id}")
 		public RedirectView updateTask(Principal principal, Task task, @PathVariable("id") Integer id) {
 			service.UpdateTask(task);
-			return new RedirectView("/display-tasks");
+			return new RedirectView("/display");
 		}
 	 @GetMapping("/update/{id}")
 		public String updateTaskForm(ModelMap model, @PathVariable("id") Integer id) {
@@ -89,15 +91,15 @@ public class Contr {
 	    @RequestMapping(value = "/create", method = RequestMethod.GET)
 	    public String showCreateTask(ModelMap model) {
 
-	        return "display";
+	        return "create";
 	    }
 
 
 	    @RequestMapping(value="/create", method = RequestMethod.POST)
-	    public String submitCreateTask(ModelMap model,
+	    public RedirectView submitCreateTask(ModelMap model,
 	                                   @RequestParam String task,
-	                                   @RequestParam String startdate,
-	                                   @RequestParam String enddate,
+	                                   @RequestParam String startDate,
+	                                   @RequestParam String endDate,
 	                                   @RequestParam String description,
 	                                   @RequestParam String email,
 	                                   @RequestParam String severity,
@@ -110,8 +112,8 @@ public class Contr {
 	        t.setTask(task);
 
 
-	        t.setStartDate(startdate);
-	        t.setEndDate(enddate);
+	        t.setStartDate(startDate);
+	        t.setEndDate(endDate);
 	        t.setDescription(description);
 	        t.setEmail(email);
 	        t.setSeverity(severity);
@@ -121,6 +123,6 @@ public class Contr {
 	        t.setUser(retrievedUser);
 
 	        service.saveTask(t);
-	        return "create";
+	        return new RedirectView ("/display");
 	    }
 }

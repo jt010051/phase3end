@@ -15,7 +15,7 @@
   </head>
   <body>
      <div class="container">
-    <form th:action="@{/login}" method="POST" class="form-signin">
+    <form th:action="@{/display}" method="POST" class="form-signin">
         <h2 class="form-signin-heading">Please login </h2>
         <p>
           <label for="username" class="sr-only">Username</label>

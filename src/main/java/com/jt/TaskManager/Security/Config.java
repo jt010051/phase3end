@@ -52,7 +52,7 @@ public class Config extends WebSecurityConfigurerAdapter{
 				.permitAll()
 				.passwordParameter("password")
 				.usernameParameter("username")
-				.defaultSuccessUrl("/login", true)
+				.defaultSuccessUrl("/display", true)
 
 			.and()
 			.logout()

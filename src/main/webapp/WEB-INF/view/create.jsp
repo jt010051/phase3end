@@ -12,10 +12,10 @@
 <form method="post">
     <label for="task">Task Name:</label>
     <input type="text" id="task" name="task"><br><br>
-    <label for="startdate">Start Date:</label>
-    <input type="date" id="startdate" name="startdate"><br><br>
-    <label for="enddate">End Date:</label>
-    <input type="date" id="enddate" name="enddate"><br><br>
+    <label for="startDate">Start Date:</label>
+    <input type="date" id="startDate" name="startDate"><br><br>
+    <label for="endDate">End Date:</label>
+    <input type="date" id="endDate" name="endDate"><br><br>
     <label for="description">Description:</label>
     <textarea id="description" name="description" rows="4" cols="50">
 

@@ -50,7 +50,7 @@ private TaskRepo repo;
     	super();
     	this.roleRepository = roleRepository;
     }
-    public List<Task> listAllUser() {
+    public Iterable<Task> listAllTasks() {
         return repo.findAll();
     }
 
