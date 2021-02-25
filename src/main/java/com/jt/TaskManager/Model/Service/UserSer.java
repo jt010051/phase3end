@@ -60,7 +60,7 @@ repo.save(task);
 }
 public void UpdateTask(Task task) {
 	Task t = repo.findById(task.getId()).get();
-	t.setTask(task.getTask());
+	t.setName(task.getName());
 	t.setStartDate(task.getStartDate());
 	t.setEndDate(task.getEndDate());
 	t.setDescription(task.getDescription());
@@ -75,7 +75,10 @@ public User GetUserByName(String name) {
     User foundUser = userRepository.findByUserName(name);
     return foundUser;
 }
-public void deleteTask(Integer id) {
-repo.deleteById(id);
+public void deleteTask(Task task) {
+repo.delete(task);
+}
+public void saveUser(User user) {
+	userRepository.save(user);
 }
 }

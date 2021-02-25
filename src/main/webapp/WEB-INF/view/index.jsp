@@ -25,6 +25,9 @@
           <label for="password" class="sr-only">Password</label>
         <input type="password" id="password" name="password" class="form-control" placeholder="Password" required="">
         <button class="btn btn-lg btn-primary btn-block" type="submit">Login</button>
+        <div class="d-flex justify-content-center mt-2">
+					<a href="register">Click here to register</a>
+				</div>
       </form>
 </div>
 </body></html></h2>

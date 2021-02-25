@@ -42,7 +42,7 @@ public class Config extends WebSecurityConfigurerAdapter{
 			http 
 			.csrf().disable()
 			.authorizeRequests()
-			.antMatchers("/", "index", "/csss/*", "/js/*","/jsp/*").permitAll()
+			.antMatchers("/", "index", "/csss/*", "/js/*","/jsp/*","/register/**").permitAll()
 			.antMatchers("/api/**").hasRole(Role.STANDARD.name())
 			.anyRequest()
 			.authenticated()

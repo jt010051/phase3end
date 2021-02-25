@@ -17,10 +17,11 @@ public class Task {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 private int id;
-private String task;
-@Column(name ="startDate")
+	@Column(name="name")
+private String name;
+@Column(name ="start_date")
 private String startDate;
-@Column(name ="endDate")
+@Column(name ="end_date")
 
 private String endDate;
 private String description;
@@ -28,6 +29,13 @@ private String email;
 private String severity;
 @ManyToOne
 private User user;
+
+public String getName() {
+	return name;
+}
+public void setName(String name) {
+	this.name = name;
+}
 public User getUser() {
 	return user;
 }
@@ -42,12 +50,8 @@ public int getId() {
 public void setId(int id) {
 	this.id = id;
 }
-public String getTask() {
-	return task;
-}
-public void setTask(String task) {
-	this.task = task;
-}
+
+
 public String getStartDate() {
 	return startDate;
 }
@@ -78,10 +82,10 @@ public String getSeverity() {
 public void setSeverity(String severity) {
 	this.severity = severity;
 }
-public Task(int id, String task, String startDate, String endDate, String description, String email, String severity) {
+public Task(int id, String name, String startDate, String endDate, String description, String email, String severity) {
 	super();
 	this.id = id;
-	this.task = task;
+	this.name = name;
 	this.startDate = startDate;
 	this.endDate = endDate;
 	this.description = description;
@@ -90,7 +94,7 @@ public Task(int id, String task, String startDate, String endDate, String descri
 }
 @Override
 public String toString() {
-	return "Task [id=" + id + ", task=" + task + ", startDate=" + startDate + ", endDate=" + endDate + ", description="
+	return "Task [id=" + id + ", name=" + name + ", startDate=" + startDate + ", endDate=" + endDate + ", description="
 			+ description + ", email=" + email + ", severity=" + severity + "]";
 }
 

@@ -97,19 +97,19 @@ public class Contr {
 
 	    @RequestMapping(value="/create", method = RequestMethod.POST)
 	    public RedirectView submitCreateTask(ModelMap model,
-	                                   @RequestParam String task,
+	                                   @RequestParam String name,
 	                                   @RequestParam String startDate,
 	                                   @RequestParam String endDate,
 	                                   @RequestParam String description,
 	                                   @RequestParam String email,
 	                                   @RequestParam String severity,
-	                                   @RequestParam String username){
+	                                   @RequestParam String userName){
 
 
-	        model.put("task", task);
+	        model.put("task", name);
 
 	        Task t = new Task();
-	        t.setTask(task);
+	        t.setName(name);
 
 
 	        t.setStartDate(startDate);
@@ -119,10 +119,34 @@ public class Contr {
 	        t.setSeverity(severity);
 
 	        //TODO: Handle case where User is not found.
-	        User retrievedUser = service.GetUserByName(username);
+	        User retrievedUser = service.GetUserByName(userName);
 	        t.setUser(retrievedUser);
 
 	        service.saveTask(t);
 	        return new RedirectView ("/display");
 	    }
+	    @GetMapping("delete-task/{id}")
+		public ModelAndView deleteTask(ModelMap model, @PathVariable("id") Integer id) {
+			Task task = service.GetTaskById(id);
+			service.deleteTask(task);
+			model.put("deleted", task.getName());
+			return new ModelAndView("redirect:/display", model);
+		}
+	    @GetMapping("/register")
+		public String signUpPage(ModelMap model) {
+			return "registration";
+		}
+		
+		@PostMapping("/register")
+		public ModelAndView postSignUpPage(ModelMap model, User user) {
+			if(user != null && user.getUserName() != "" && user.getPassword() != "" ) {
+				user.setActive(true);
+				service.saveUser(user);
+				return new ModelAndView("redirect:/display", model);
+			}else {
+				model.put("error", "Fill in all details");
+				return new ModelAndView("registration", model);
+			}
+			
+		}
 }

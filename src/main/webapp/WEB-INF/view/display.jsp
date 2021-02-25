@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
@@ -67,19 +69,19 @@
 		<tbody>
 			<c:forEach items="${tasks}" var="task">
 				<tr>
-					<td>${task.task}</td>
+					<td>${task.name}</td>
 					<td>${task.description}</td>
-					<td><${task.startDate} /></td>
-					<td><${task.endDate} /></td>
+					<td><${task.startDate}/></td>
+					<td><${task.endDate}/></td>
 					<td>${task.email}</td>
 					<td>${task.severity}</td>
-					<td>${task.user.username}</td>
+					<td>${task.user.userName}</td>
 					<c:choose>
-						<c:when test="${task.user.id == user.id}">
-							<td><a href="/update-task/${task.id}"><i
-									style="color: red" class="far fa-edit"></i></a></td>
+						<c:when test="${task.id == task.id}">
+							<td><a href="/update/${task.id}"><i
+									style="color: white" class="far fa-edit"></i></a></td>
 							<td><a href="/delete-task/${task.id}"><i
-									style="color: red" class="fas fa-trash"></i></a></td>
+									style="color: white" class="fas fa-trash"></i></a></td>
 						</c:when>
 						<c:otherwise>
 							<td></td>

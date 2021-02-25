@@ -25,13 +25,13 @@
 				<tr>
 					<td>${task.name}</td>
 					<td>${task.description}</td>
-					<td><fmt:formatDate type="date" value="${task.startDate}" /></td>
-					<td><fmt:formatDate type="date" value="${task.endDate}" /></td>
+					<td> ${task.startDate}</td>
+					<td>${task.endDate}</td>
 					<td>${task.email}</td>
 					<td>${task.severity}</td>
-					<td>${task.user.username}</td>
+					<td>${task.user.userName}</td>
 					<c:choose>
-						<c:when test="${task.user.id == user.id}">
+						<c:when test="${task.id == task.id}">
 							<td><a href="/update-task/${task.id}"><i
 									style="color: white" class="far fa-edit"></i></a></td>
 							<td><a href="/delete-task/${task.id}"><i
@@ -54,7 +54,7 @@
 				<label for="name" class="mb-1">Task Name:</label>
 				<div class="input-group mb-3">
 
-					<input type="text" id="name" name="name" value="${task.task}"
+					<input type="text" id="name" name="name" value="${task.name}"
 						class="form-control">
 
 				</div>
@@ -63,13 +63,13 @@
 
 					<input type="date" id="startDate" name="startDate"
 						class="form-control"
-						value=<fmt:formatDate pattern = "yyyy-MM-dd" value = "${task.startDate}" />>
+						value=pattern = "yyyy-MM-dd" value = "${task.startDate}">
 				</div>
 				<label for="endDate" class="mb-1">End Date:</label>
 				<div class="input-group mb-3">
 
 					<input type="date" id="endDate" name="endDate" class="form-control"
-						value=<fmt:formatDate pattern = "yyyy-MM-dd" value = "${task.endDate}" />>
+						value="${task.endDate}" >
 				</div>
 				<label for="description" class="mb-1">Description:</label>
 				<div class="input-group mb-3">
